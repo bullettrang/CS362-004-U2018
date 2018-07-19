@@ -5,6 +5,15 @@
 #include <math.h>
 #include <stdlib.h>
 
+void assertBool(int a, int b) {
+	if (a == b) {
+		printf(" TEST SUCCESS\n");
+	}
+	else {
+		printf(" TEST FAILURE\n");
+	}
+}
+
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
@@ -320,6 +329,8 @@ int handCard(int handPos, struct gameState *state) {
 int supplyCount(int card, struct gameState *state) {
   return state->supplyCount[card];
 }
+
+//returns count of the deck
 
 int fullDeckCount(int player, int card, struct gameState *state) {
   int i;
@@ -1287,6 +1298,10 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
   return 0;
 }
 
+//unit test
+//check supply 
+//check to Flag
+//check what card
 
 int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
 {
