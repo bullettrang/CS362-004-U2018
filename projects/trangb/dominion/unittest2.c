@@ -90,6 +90,7 @@ int main() {
 			memcpy(&testG, &G, sizeof(struct gameState));
 			originalSupply = testG.supplyCount[kingdom[j]];
 			originalDeck = testG.deckCount[PLAYERONE];
+			printf("TESTING gainCard()\n\n");
 			if (i == 1) {
 				printf("original deck size is %d \n", originalDeck);
 			}

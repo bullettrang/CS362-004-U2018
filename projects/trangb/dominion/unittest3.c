@@ -25,18 +25,7 @@
 //#define MAX_HAND 500
 //#define MAX_DECK 500
 
-//
-//int hand[MAX_PLAYERS][MAX_HAND];
-//int handCount[MAX_PLAYERS];
-//int deck[MAX_PLAYERS][MAX_DECK];
-//int deckCount[MAX_PLAYERS];
-//int discard[MAX_PLAYERS][MAX_DECK];
-//int discardCount[MAX_PLAYERS];
 
-
-//int numHandCards(struct gameState *state) {
-//	return state->handCount[whoseTurn(state)];
-//}
 
 struct gameState * resetGame(int k[], int seed) {
 	struct gameState * g;
@@ -56,24 +45,19 @@ struct gameState * resetGame(int k[], int seed) {
 int main() {
 
 	struct gameState * testG;
-	struct gameState G;
-	struct gameState tg;
+	
+	
 	int kingdom[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
 		sea_hag, tribute, smithy };
 
-	int testSuite[9] = { council_room ,feast, mine, remodel,smithy,village,great_hall,steward };
+	
 	//curse, estate, duchy,province, great hall, gardens
 	//int testSuite[VICTORYCARDS] = { 0,1,2,3,10,16 };
 	
 	int  i, k;
 
 	int seed = 1000;
-	int curses[MAX_HAND];
-	int estates[MAX_HAND];
-	int duchies[MAX_HAND];
-	int provinces[MAX_HAND];
-	int great_halls[MAX_HAND];
-	int gardenss[MAX_HAND];
+
 	int numCards;
 
 
