@@ -14,31 +14,8 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-//int stewardEffect(int choice1, int choice2, int choice3, int currentPlayer, struct gameState *state, int handPos) {
-//	if (choice1 == 1)
-//	{
-//		//+2 cards
-//		drawCard(currentPlayer, state);
-//		drawCard(currentPlayer, state);
-//	}
-//	else if (choice1 == 2)
-//	{
-//		//+2 coins
-//		state->coins = state->coins + 2;
-//	}
-//	else
-//	{
-//		//trash 2 cards in hand
-//		//******BUG******
-		//should be discardCard(choice2,currentPlayer,state,1);
-//		discardCard(choice1, currentPlayer, state, 1);
-//		discardCard(choice3, currentPlayer, state, 1);
-//	}
-//
-//	//discard card from hand
-//	discardCard(handPos, currentPlayer, state, 0);
-//	return 0;
-//}
+
+
 struct gameState * resetGame(int k[], int seed, int players) {
 	struct gameState * g;
 	//create/reset a game
@@ -109,16 +86,20 @@ int main() {
 		else {
 			printf("TESTING CHOICE 3\n");
 			printf("hand of player 1 after steward is:");
-			//for (i = 0; i < testG->handCount[0]; i++) {
-			//	printf(" %d", testG->hand[0][i]);
-			//}
-			//printf("\n");
+			for (i = 0; i < testG->handCount[0]; i++) {
+				printf(" %d", testG->hand[0][i]);
+			}
+			printf("\n");
 			if (newHand == begHand - 2) {
 				printf("TEST PASSED\n");
 			}
 			else {
 				printf("TEST FAILED\n");
 			}
+			for (i = 0; i < testG->handCount[0]; i++) {
+				printf(" %d", testG->hand[0][i]);
+			}
+			printf("\n");
 		}
 		free(testG);
 	}

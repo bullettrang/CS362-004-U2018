@@ -719,11 +719,14 @@ int stewardEffect(int choice1, int choice2, int choice3, int currentPlayer, stru
 
 int cutpurseEffect(int currentPlayer, struct gameState * state, int handPos) {
 	updateCoins(currentPlayer, state, 2);
-	for (int i = 0; i < state->numPlayers; i++)
+	int i;
+	int j;
+	int k;
+	for ( i = 0; i < state->numPlayers; i++)
 	{
 		if (i != currentPlayer)
 		{	//******BUG******
-			for (int j = 0; j <= state->handCount[i]; j++)
+			for ( j = 0; j <= state->handCount[i]; j++)
 			{
 				if (state->hand[i][j] == copper)
 				{
@@ -732,7 +735,7 @@ int cutpurseEffect(int currentPlayer, struct gameState * state, int handPos) {
 				}
 				if (j == state->handCount[i])
 				{
-					for (int k = 0; k < state->handCount[i]; k++)
+					for ( k = 0; k < state->handCount[i]; k++)
 					{
 						if (DEBUG)
 							printf("Player %d reveals card number %d\n", i, state->hand[i][k]);

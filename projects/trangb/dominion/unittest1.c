@@ -21,7 +21,7 @@
 int main() {
 	int i;
 	int j;
-	int r;
+
 	int handCount;
 	struct gameState G, testG;
 	int numPlayers = 2;
@@ -51,7 +51,7 @@ int main() {
 
 	//int firstPlayer = whoseTurn(&G);
 	int totalHandCost;
-	int totalDeckCost;
+	
 	int pOneHandCost;
 	// ----------- TEST 1: check the cost of each players hand
 	//since each player starts with 3 coppers and 2 estates, this should be zero for both players
@@ -104,7 +104,7 @@ int main() {
 			randomHandCost = 0;							//reset random handcost
 			actualRandomHandCost = 0;					//reset actual random handcost
 			memset(&G, 23, sizeof(struct gameState));   // clear the game state
-			r = initializeGame(numPlayers, k, seed, &G); // initialize a new game
+			initializeGame(numPlayers, k, seed, &G); // initialize a new game
 			memcpy(&testG, &G, sizeof(struct gameState));	//initialize test game
 		for (i = 0; i < 10; i++) {				
 				testG.handCount[pt] = handCount;
@@ -123,7 +123,7 @@ int main() {
 		}
 	}
 	//adventurer , council, mine, remodel, salvager
-	int testSuite[5] = { 8,11,12,24,7 };
+
 	printf("Test 3: checking state after playing: adventurer, council, mine, remodel, salvager");
 		//for (i = 0; i < 5; i++) {
 		//	memset(&G, 23, sizeof(struct gameState));   // clear the game state
@@ -133,7 +133,7 @@ int main() {
 		//}
 		printf("Test 3: getCost after playing council card\n");
 		memset(&G, 23, sizeof(struct gameState));
-		r = initializeGame(numPlayers, k, seed, &G);
+		 initializeGame(numPlayers, k, seed, &G);
 		memcpy(&testG, &G, sizeof(struct gameState));
 		//cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 		totalHandCost = 0;

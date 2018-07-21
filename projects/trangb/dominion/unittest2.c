@@ -47,37 +47,11 @@ int main() {
 	//council room, feast, mine, remodel, smithy, village, great hall, steward,adventurer
 
 
-	int piles[3];
-	//index 0 is discard
-	//index 1 is deck
-	//index 2 is hand
+
+
 	
 	//test all 3 toFlags cards
 	for (i = 0; i < 3; i++) {
-
-		//what pile are we checking?
-		switch (i) {
-
-			case 0:
-				piles[i] = testG.discardCount[PLAYERONE];
-				printf("Checking Discard\n\n");
-				break;
-			
-			case 1:
-				piles[i] = testG.deckCount[PLAYERONE];
-				printf("Checking Deck\n\n");
-				break;
-			
-			case 2:
-				piles[i] = testG.handCount[PLAYERONE];
-				printf("Checking Hand\n\n");
-				break;
-			
-			default:
-				break;
-		}
-
-		
 		for (j = 0; j < 10; j++) {
 			//clear the game
 
@@ -90,24 +64,23 @@ int main() {
 			memcpy(&testG, &G, sizeof(struct gameState));
 			originalSupply = testG.supplyCount[kingdom[j]];
 			originalDeck = testG.deckCount[PLAYERONE];
-			printf("TESTING gainCard()\n\n");
+			//printf("TESTING gainCard()\n\n");
 			if (i == 1) {
-				printf("original deck size is %d \n", originalDeck);
+				//printf("original deck size is %d \n", originalDeck);
 			}
-			printf("Original supply pile of card %d : %d\n", kingdom[j], originalSupply);
+			//printf("Original supply pile of card %d : %d\n", kingdom[j], originalSupply);
 			for (k = 0; k < 10 ; k++) {
 				int newSupply;
-				int newDeck;
 				//how many jth kingdom cards do we get to the i pile? k times
 				for (l = 0; l < k+1; l++) {
 					gainCard(kingdom[j], &testG, i, PLAYERONE);
 				}
 				newSupply = testG.supplyCount[kingdom[j]];
-				printf(" \nnew supply pile of card %d is : %d \n", kingdom[j], newSupply);
+				//printf(" \nnew supply pile of card %d is : %d \n", kingdom[j], newSupply);
 				int displacedCards;
 				if (i == 0) {
 					displacedCards = testG.discardCount[PLAYERONE];
-					printf("discard pile is %d\n", displacedCards);
+					//printf("discard pile is %d\n", displacedCards);
 				}
 				else if (i == 1) {
 					int tempDeck;
@@ -115,20 +88,20 @@ int main() {
 					//subtract 5 cards for the starting deck size
 					tempDeck = displacedCards - 5;
 					displacedCards = tempDeck;
-					printf("deck pile is %d\n", displacedCards);
+					//printf("deck pile is %d\n", displacedCards);
 				}
 				else {
 					int tempHand;
 					displacedCards = testG.handCount[PLAYERONE];
 					tempHand = displacedCards - 5;
 					displacedCards = tempHand;
-					printf("hand pile is %d\n", displacedCards);
+					//printf("hand pile is %d\n", displacedCards);
 				}
 				int testSupply;
 
 				testSupply = displacedCards + newSupply;
 #if (NOISY_TEST ==1)
-				printf("\n\nTest Supply: %d   Expected Supply: %d \n\n", testSupply, originalSupply);
+				//printf("\n\nTest Supply: %d   Expected Supply: %d \n\n", testSupply, originalSupply);
 #endif
 				assert(testSupply == originalSupply);
 			}
