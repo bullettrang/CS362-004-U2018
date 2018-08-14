@@ -63,7 +63,6 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println(urlVal.isValid("http:\\www.google.com"));
 	   System.out.println(urlVal.isValid("http:://www.google.com"));
 	   System.out.println(urlVal.isValid("http:/www.google.com"));
-
    }
    
    public void testYourSecondPartition(){
@@ -116,7 +115,7 @@ public class UrlValidatorTest extends TestCase {
    
    public void testIsValid()
    {
-	// You can use this function for programming-based testing
+	   // You can use this function for programming-based testing
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   System.out.println("PERMUTATION PROGRAMMING-BASED TESTING....");
 	   
@@ -163,6 +162,9 @@ public class UrlValidatorTest extends TestCase {
 	        	  testBuffer.append(testUrlPartsOptions[i][testPartsIndex[i]]);
 	          }
 	          
+	          // Increment last example index
+	          testPartsIndex[4]++;
+	          
 	          // test the URL
 	          result = urlVal.isValid(testBuffer.toString());
 	          
@@ -195,14 +197,71 @@ public class UrlValidatorTest extends TestCase {
 
    }
    
+   // Name: testIsOrderValid
+   // Parameters: numTest - the number of tests to perform
+   // Description: Constructs a random URL that randomizes the parts.  The main purpose
+   //              being to ensure the isValid() function can tell if the URL is in the
+   //              correct format or not.
+   public void testIsOrderValid(int numTests)
+   {
+	   // You can use this function for programming-based testing too
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   System.out.println("PROGRAMMING-BASED TESTING FOR ORDER....");
+	   
+	   // create arrays to sort results
+	   ArrayList<String> valid = new ArrayList<String>();
+	   ArrayList<String> invalid = new ArrayList<String>();
+	   
+	   boolean result = false;
+	   for (int i = 0; i < numTests; i++) {
+		   StringBuilder testBuffer = new StringBuilder();
+	          
+		   // build a random URL with random parts and selections within those parts
+	       for (int j = 0; j < testPartsIndex.length; j++)
+	       {
+	    	   int randPart = (int)(Math.random() * testUrlPartsOptions.length);
+	    	   int randItem = (int)(Math.random() * testUrlPartsOptions[randPart].length);
+	    	   testBuffer.append(testUrlPartsOptions[randPart][randItem]);
+	       }
+	          
+	       // test the URL
+	       String URL = testBuffer.toString();
+	       result = urlVal.isValid(URL);
+	       
+	       // Save the result to the proper ArrayList
+	       if (result)
+	       {
+	    	   valid.add(URL);
+	       }
+	       else
+	       {
+	    	   invalid.add(URL);
+	       }    
+	   }
+	   
+	   // Print out valid/invalid addresses
+	   System.out.println("Valid URL's\n");
+	   for(int i = 0; i < valid.size(); i++)
+	   {
+		   System.out.println(valid.get(i) + "\n");
+	   }
+	   
+	   System.out.println("Invalid URL's\n");
+	   for(int i = 0; i < invalid.size(); i++)
+	   {
+		   System.out.println(invalid.get(i) + "\n");
+	   }
+   }
+   
    public static void main(String[] argv) {
 
-	      UrlValidatorTest fct = new UrlValidatorTest("url test");
-	      //fct.setUp();
-	      //fct.testIsValid();
-	      //fct.testManualTest();
-	      //fct.testIsValid();
-	      fct.testYourFirstPartition();
+	   UrlValidatorTest fct = new UrlValidatorTest("url test");
+	   
+	   
+	   // Note: due to the nature of these tests, only run one at a time.
+	   fct.testIsValid();
+	   
+	   //fct.testIsOrderValid(10);
 	   }
    
    //-------------------- Test data for creating a composite URL
